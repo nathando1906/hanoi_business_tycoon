@@ -75,7 +75,7 @@ test("downturn and upswing shocks use documented multipliers", () => {
   state = HBT.openStore(state, regionMap.core, sectors.retail, regionMap, sectorMap).state;
   const normal = HBT.advanceQuarter(state, regionMap, sectorMap, {random: () => 0.5});
   const down = HBT.advanceQuarter(state, regionMap, sectorMap, {random: () => 0.1});
-  const up = HBT.advanceQuarter(state, regionMap, regionMap, {random: () => 0.9});
+  const up = HBT.advanceQuarter(state, regionMap, sectorMap, {random: () => 0.9});
   assert.equal(normal.event.type, "stable");
   assert.equal(down.event.revenueMultiplier, 0.88);
   assert.equal(up.event.revenueMultiplier, 1.12);
