@@ -1,0 +1,7 @@
+﻿region_id,region_name,demand_index,purchasing_power_index,rent_index,access_index,competition_discount,assumed_quarterly_growth,assumed_population,assumed_area_km2,assumed_density_per_km2,assumed_business_establishments,data_status,caveat
+core,Lõi đô thị,1.25,1.25,1.35,1.2,0.35,0.035,220000,45,4889,12500,SIMULATED_ASSUMPTION,Illustrative high-density central archetype; not a measured Hanoi district.
+west,Cực phía Tây,1.05,1.12,0.95,1.05,0.22,0.075,280000,180,1556,9000,SIMULATED_ASSUMPTION,Illustrative growth-pole archetype; boundaries and population are fictional.
+east,Cực phía Đông,0.92,1.02,0.78,0.92,0.16,0.09,210000,150,1400,6500,SIMULATED_ASSUMPTION,Illustrative emerging urban-pole archetype; not an observed submarket.
+north,Vành đai phía Bắc,0.75,0.92,0.62,0.78,0.12,0.085,160000,220,727,4000,SIMULATED_ASSUMPTION,Illustrative outer ring archetype; no real boundary match.
+south,Cực phía Nam,0.88,0.94,0.72,0.86,0.18,0.065,190000,170,1118,5200,SIMULATED_ASSUMPTION,Illustrative mixed residential/industrial archetype; fictional.
+outer,Vùng ven,0.62,0.78,0.48,0.63,0.08,0.055,140000,350,400,2600,SIMULATED_ASSUMPTION,Illustrative low-cost peripheral archetype; not mapped to rural population.

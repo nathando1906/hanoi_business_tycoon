@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "status": "SIMULATED",
+    "unit": "VND million per quarter unless stated",
+    "note": "All sector revenue, operating cost and setup cost coefficients are fictional gameplay assumptions."
+  },
+  "sectors": {
+    "retail": {
+      "name": "Bán lẻ tiện ích",
+      "baseRevenue": 150,
+      "baseOpex": 65,
+      "setup": 115,
+      "accessWeight": 1.0,
+      "needWeight": 1.0,
+      "transportWeight": 0.12
+    },
+    "cafe": {
+      "name": "Cà phê & F&B",
+      "baseRevenue": 132,
+      "baseOpex": 61,
+      "setup": 90,
+      "accessWeight": 1.15,
+      "needWeight": 0.95,
+      "transportWeight": 0.06
+    },
+    "logistics": {
+      "name": "Điểm trung chuyển logistics",
+      "baseRevenue": 170,
+      "baseOpex": 78,
+      "setup": 145,
+      "accessWeight": 1.25,
+      "needWeight": 0.82,
+      "transportWeight": 0.18
+    }
+  }
+}

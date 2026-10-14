@@ -1,0 +1,7 @@
+﻿region_id,region_name,population,area_km2,density_per_km2,business_establishments,economic_parameters,notes
+core,Lõi đô thị,Not collected,Not collected,Not collected,Not collected,Not calibrated,Chỉ có market proxy cấp CBD trong báo cáo C&W; chưa đủ để suy ra dân số hay cơ sở kinh doanh vùng.
+west,Cực phía Tây,Not collected,Not collected,Not collected,Not collected,Not calibrated,"Có submarket retail proxy, nhưng không trùng chính xác vùng khái niệm."
+east,Cực phía Đông,Not collected,Not collected,Not collected,Not collected,Not calibrated,Cần xác định ranh giới vùng và trích xuất thống kê/POI.
+north,Vành đai phía Bắc,Not collected,Not collected,Not collected,Not collected,Not calibrated,Cần xác định ranh giới vùng và trích xuất thống kê/POI.
+south,Cực phía Nam,Not collected,Not collected,Not collected,Not collected,Not calibrated,Cần xác định ranh giới vùng và trích xuất thống kê/POI.
+outer,Vùng ven,Not collected,Not collected,Not collected,Not collected,Not calibrated,Không gán dân số nông thôn cấp thành phố cho vùng ven giả lập.
