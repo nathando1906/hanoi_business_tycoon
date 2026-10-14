@@ -36,7 +36,16 @@ Tests use Node's built-in test runner; no third-party test dependency is needed.
 - `docs/`: methodology, rules, data dictionary, and project context.
 - `tests/`: automated tests.
 
-## Validation status\n`npm test` runs 10 automated tests covering the engine and synthetic-data labeling. `node --check game.js` and `node --check src/simulation.js` pass. A real browser smoke test was attempted, but browser navigation was blocked by the execution environment (`ERR_BLOCKED_BY_ADMINISTRATOR`); see `docs/UI_QA.md`.\n\n## Data honesty
-All six region coefficients and all sector revenue/cost coefficients are **fictional gameplay assumptions**, not measured values for Hanoi locations. The national Vietnam indicators are macro context only and must not be interpreted as neighborhood demand. Published retail market indicators are stored separately and are not automatically used as region-specific rents because their market coverage and submarket definitions differ from the conceptual game regions. Missing values mean not collected, not zero.
+## Validation status
+- npm test: 10 automated tests passed, covering the simulation engine and synthetic-data labeling.
+- node --check game.js: passed.
+- node --check src/simulation.js: passed.
+- Browser validation: A browser smoke test was attempted, but navigation was blocked by the execution environment (ERR_BLOCKED_BY_ADMINISTRATOR). The actual browser UI has not yet been fully validated. See docs/UI_QA.md for the manual testing checklist.
+
+## Data honesty
+All six region coefficients and all sector revenue/cost coefficients are fictional gameplay assumptions, not measured values for Hanoi locations.
+National Vietnam indicators provide macroeconomic context only and must not be interpreted as neighborhood demand estimates. Published retail market indicators are stored separately and are not automatically used as region-specific rents because their market coverage and submarket definitions differ from the conceptual game regions.
+Missing values mean not collected, not zero.
+This game is for learning and experimentation, not investment advice.
 
 This game is for learning and experimentation, not investment advice.
