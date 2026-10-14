@@ -1,0 +1,9 @@
+{
+  "name": "hanoi-business-tycoon",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Educational business-location simulation game for a conceptual polycentric Hanoi.",
+  "scripts": {
+    "test": "node --test"
+  }
+}

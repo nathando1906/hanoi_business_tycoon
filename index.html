@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hanoi Business Tycoon — Educational Simulation</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <div><div class="eyebrow">URBAN ECONOMY SIMULATOR · EDUCATIONAL GAME</div><h1>Hanoi Business Tycoon</h1><p>Mở rộng doanh nghiệp trong một Hà Nội đa trung tâm</p></div>
+  <div class="top-actions"><span class="demo-pill">DỮ LIỆU GIẢ LẬP</span><button id="nextQuarter" class="primary">Kết thúc quý →</button></div>
+</header>
+<main>
+  <section class="metrics" id="metrics"></section>
+  <div class="layout">
+    <section class="panel map-panel">
+      <div class="section-head"><div><div class="eyebrow">01 / KHÔNG GIAN ĐÔ THỊ</div><h2>Bản đồ cơ hội</h2></div><span class="hint">Chọn một khu vực</span></div>
+      <div class="map-wrap">
+        <svg id="cityMap" viewBox="0 0 680 490" role="img" aria-label="Bản đồ sơ đồ các khu vực mô phỏng của Hà Nội">
+          <defs><pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M 28 0 L 0 0 0 28" fill="none" stroke="#dbe5e0" stroke-width="1"/></pattern></defs>
+          <rect width="680" height="490" rx="18" fill="#eef4ef"/><rect width="680" height="490" rx="18" fill="url(#grid)"/>
+          <path d="M-10 360 C90 320 130 400 230 340 S380 280 430 340 S560 410 700 320" fill="none" stroke="#a7d5e9" stroke-width="26" opacity=".8"/>
+          <path d="M-10 360 C90 320 130 400 230 340 S380 280 430 340 S560 410 700 320" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="8 8"/>
+          <path d="M65 430 C170 300 180 210 330 160 S520 100 625 35" fill="none" stroke="#fff" stroke-width="14"/>
+          <path d="M65 430 C170 300 180 210 330 160 S520 100 625 35" fill="none" stroke="#d0d9d3" stroke-width="2"/>
+          <path d="M20 90 C170 110 270 240 430 240 S570 220 670 180" fill="none" stroke="#fff" stroke-width="12"/>
+          <path d="M20 90 C170 110 270 240 430 240 S570 220 670 180" fill="none" stroke="#d0d9d3" stroke-width="2"/>
+          <g id="regionNodes"></g>
+          <text x="20" y="470" fill="#688079" font-size="11">SƠ ĐỒ KHÁI NIỆM · KHÔNG PHẢI BẢN ĐỒ ĐỊA LÝ CHÍNH XÁC</text>
+        </svg>
+      </div>
+      <div class="legend"><span><i class="dot green"></i> Tiềm năng thị trường</span><span><i class="dot orange"></i> Đã có cửa hàng</span><span><i class="dot blue"></i> Cực phát triển giả lập</span></div>
+      <div class="region-list" id="regionList"></div>
+    </section>
+    <section class="panel detail-panel">
+      <div class="section-head"><div><div class="eyebrow">02 / PHÂN TÍCH ĐỊA ĐIỂM</div><h2 id="regionTitle">Chọn khu vực</h2></div><span id="regionTag" class="tag">—</span></div>
+      <p id="regionDesc" class="muted"></p>
+      <div id="marketStats" class="market-stats"></div>
+      <div class="divider"></div>
+      <h3>Đầu tư tại khu vực này</h3>
+      <label class="field-label" for="sector">Mô hình kinh doanh</label>
+      <select id="sector">
+        <option value="retail">Bán lẻ tiện ích</option><option value="cafe">Cà phê & F&B</option><option value="logistics">Điểm trung chuyển logistics</option>
+      </select>
+      <div class="investment-box">
+        <div><span>Chi phí mở mới</span><strong id="openCost">—</strong></div>
+        <div><span>Doanh thu/quý dự kiến</span><strong id="revenueEstimate">—</strong></div>
+        <div><span>Chi phí vận hành/quý</span><strong id="opexEstimate">—</strong></div>
+      </div>
+      <button id="openStore" class="primary full">Mở cơ sở tại đây</button>
+      <p id="actionMessage" class="action-message" aria-live="polite">Chọn khu vực trên bản đồ để xem cơ hội.</p>
+      <div class="divider"></div>
+      <h3>Điều gì tạo nên doanh thu?</h3>
+      <p class="small muted">Mô hình demo kết hợp quy mô nhu cầu, sức mua, khả năng tiếp cận và cạnh tranh. Đây là giả định minh họa, chưa phải ước lượng thực nghiệm.</p>
+      <div class="formula">Doanh thu = Nhu cầu cơ sở × Hệ số ngành × Hệ số tiếp cận × (1 − áp lực cạnh tranh)</div>
+    </section>
+  </div>
+  <section class="panel performance">
+    <div class="section-head"><div><div class="eyebrow">03 / KẾT QUẢ KINH DOANH</div><h2>Dashboard tài chính</h2></div><span class="hint">Cập nhật sau mỗi quý</span></div>
+    <div class="charts">
+      <div class="chart-card"><h3>Doanh thu & lợi nhuận theo quý</h3><canvas id="financeChart"></canvas></div>
+      <div class="chart-card"><h3>Cơ cấu chi phí quý gần nhất</h3><canvas id="costChart"></canvas></div>
+    </div>
+    <div class="table-wrap"><table><thead><tr><th>Chỉ số</th><th>Quý gần nhất</th><th>Ý nghĩa</th></tr></thead><tbody id="financeTable"></tbody></table></div>
+  </section>
+  <section class="panel">
+    <div class="section-head"><div><div class="eyebrow">04 / NHẬT KÝ QUYẾT ĐỊNH</div><h2>Lịch sử mô phỏng</h2></div><button id="reset" class="secondary">Chơi lại</button></div>
+    <div id="log" class="log"></div>
+  </section>
+  <details class="panel methodology"><summary>Giả định mô hình & giới hạn nghiên cứu</summary>
+    <ul>
+      <li><b>Các hệ số nhu cầu, sức mua, chi phí, tiếp cận, cạnh tranh và tăng trưởng của 6 vùng đều là giả định gameplay</b>; không đại diện cho phường/xã hoặc tình hình kinh doanh thực tế của Hà Nội.</li>
+      <li>Doanh thu dự kiến = doanh thu cơ sở ngành × chỉ số nhu cầu × hệ số tiếp cận × hệ số cạnh tranh. Các hệ số được chuẩn hóa để dễ giải thích, không phải mô hình hồi quy đã hiệu chỉnh.</li>
+      <li>Lợi nhuận quý = doanh thu − chi phí vận hành. Chi phí mở cơ sở được trừ khỏi tiền mặt khi đầu tư, không trừ lần hai vào lợi nhuận vận hành.</li>
+      <li>Trong các phiên bản nghiên cứu, thay chỉ số giả lập bằng dữ liệu có nguồn: dân số, thu nhập, việc làm, giao thông, giá thuê và vị trí cửa hàng; ghi rõ năm, đơn vị địa lý, nguồn và cách xử lý thiếu dữ liệu.</li>
+      <li>Để kiểm định giả thuyết đa trung tâm, so sánh kịch bản đầu tư tập trung ở lõi đô thị với kịch bản phân bổ ở nhiều cực phát triển, giữ các giả định khác tương đương.</li>
+    </ul>
+  </details>
+  <footer>Hanoi Business Tycoon · Prototype học tập · Không dùng để ra quyết định đầu tư thật</footer>
+</main>
+<script src="src/config.js"></script>\n<script src="src/simulation.js"></script>\n<script src="game.js"></script>
+</body></html>
