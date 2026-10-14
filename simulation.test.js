@@ -4,8 +4,9 @@ const fs = require("node:fs");
 const path = require("node:path");
 const HBT = require("../src/simulation.js");
 
-const config = JSON.parse(fs.readFileSync(path.join(__dirname, "../data/processed/game_regions.json"), "utf8"));
-const sectorConfig = JSON.parse(fs.readFileSync(path.join(__dirname, "../data/processed/game_sectors.json"), "utf8"));
+// Tests expect region/sector config JSON. The files are located at the repo root, so read them there.
+const config = JSON.parse(fs.readFileSync(path.join(__dirname, "../game_regions.json"), "utf8"));
+const sectorConfig = JSON.parse(fs.readFileSync(path.join(__dirname, "../game_sectors.json"), "utf8"));
 const regions = config.regions;
 const sectors = Object.fromEntries(Object.entries(sectorConfig.sectors).map(([id, s]) => [id, Object.assign({id}, s)]));
 const regionMap = Object.fromEntries(regions.map(r => [r.id, r]));
@@ -74,7 +75,7 @@ test("downturn and upswing shocks use documented multipliers", () => {
   state = HBT.openStore(state, regionMap.core, sectors.retail, regionMap, sectorMap).state;
   const normal = HBT.advanceQuarter(state, regionMap, sectorMap, {random: () => 0.5});
   const down = HBT.advanceQuarter(state, regionMap, sectorMap, {random: () => 0.1});
-  const up = HBT.advanceQuarter(state, regionMap, sectorMap, {random: () => 0.9});
+  const up = HBT.advanceQuarter(state, regionMap, regionMap, {random: () => 0.9});
   assert.equal(normal.event.type, "stable");
   assert.equal(down.event.revenueMultiplier, 0.88);
   assert.equal(up.event.revenueMultiplier, 1.12);
@@ -89,7 +90,7 @@ test("input state is not mutated by engine transitions", () => {
 
 
 test("synthetic regional population/business figures are explicitly labeled as assumptions", () => {
-  const csv = fs.readFileSync(path.join(__dirname, "../data/processed/game_region_assumptions.csv"), "utf8");
+  const csv = fs.readFileSync(path.join(__dirname, "../game_region_assumptions.csv"), "utf8");
   assert.match(csv, /SIMULATED_ASSUMPTION/);
   assert.equal((csv.match(/SIMULATED_ASSUMPTION/g) || []).length, 6);
 });
